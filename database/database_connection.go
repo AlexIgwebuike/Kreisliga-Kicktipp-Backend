@@ -44,7 +44,7 @@ func CreateDatabaseClient() (*mongo.Client, error) {
 	return clientIstance, clientIstanceError
 }
 
-func DisconnectMongoClient() error {
+func DisconnectDatabaseClient() error {
 	if clientIstance != nil {
 		clientIstance.Disconnect(context.TODO())
 	}
