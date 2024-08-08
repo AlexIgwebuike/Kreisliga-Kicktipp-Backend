@@ -21,7 +21,11 @@ func SetupDatabaseUserService(client *mongo.Client) {
 func CreateUser(vorname, nachname, email, password string) (*mongo.InsertOneResult, error) {
 	userCollection := databaseClient.Database("Kicktipp").Collection("users")
 	userPasswordCollection := databaseClient.Database("Kicktipp").Collection("user_passwords")
-	hashedPassword, _ := util.HashPassword(password)
+	hashedPassword, hashedPasswordError := util.HashPassword(password)
+
+	if hashedPasswordError != nil {
+		log.Fatalf("Failed to Hash Password: %v", hashedPasswordError)
+	}
 
 	uniqueIndexError := database.CreatUniqueIndex(userCollection, "email")
 
