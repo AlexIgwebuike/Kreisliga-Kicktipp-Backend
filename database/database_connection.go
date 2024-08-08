@@ -34,7 +34,9 @@ func CreateDatabaseClient() (*mongo.Client, error) {
 
 		if err != nil {
 			clientIstanceError = err
-			panic(clientIstanceError)
+			log.Printf("Error %v", clientIstanceError)
+
+			return
 		}
 
 		clientIstance = client
