@@ -28,7 +28,7 @@ func createUser(context echo.Context) error {
 	if createUserError != nil {
 		//log.Printf("Failed to create User %v", createUserError)
 
-		return context.JSON(http.StatusInternalServerError, map[string]string{"error": "Failed to create User"})
+		return context.JSON(http.StatusInternalServerError, map[string]string{"error": createUserError.Error()})
 	}
 
 	return context.JSON(http.StatusCreated, map[string]interface{}{
