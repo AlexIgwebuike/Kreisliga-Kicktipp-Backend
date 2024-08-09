@@ -65,5 +65,6 @@ func CreateUser(vorname, nachname, email, password string) (*mongo.InsertOneResu
 		return nil, userPasswordCollectionError
 	}
 
+	log.Println("New User has been created!")
 	return result, nil
 }
