@@ -6,7 +6,6 @@ import (
 	"os"
 	"sync"
 
-	"github.com/joho/godotenv"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -17,11 +16,6 @@ var clientIstanceError error
 var databaseClientSingleton sync.Once
 
 func loadDatabaseUriFromEnv() string {
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("Error loading .env File")
-	}
-
 	mongoDBUri := os.Getenv("MONGODB_URI")
 
 	return mongoDBUri
